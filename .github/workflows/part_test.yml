@@ -106,7 +106,7 @@ jobs:
           restore-keys: |
             mix_test-deps-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-
       - run: mix deps.get
-      - run: mix ecto.create
+      - run: mix ecto.setup
         env:
           MIX_ENV: test
           DATABASE_PORT: "${{ job.services.postgres.ports['5432'] }}"

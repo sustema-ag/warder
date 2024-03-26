@@ -14,13 +14,25 @@ defmodule Warder.MixProject do
       description: "Library for handling ranges. Includes Ecto Types for PostgreSQL.",
       package: package(),
       test_coverage: [tool: ExCoveralls],
+      aliases: aliases(),
       preferred_cli_env: [
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.post": :test,
         "coveralls.html": :test,
         "coveralls.github": :test,
-        "coveralls.multiple": :test
+        "coveralls.multiple": :test,
+        ecto: :test,
+        "ecto.create": :test,
+        "ecto.drop": :test,
+        "ecto.dump": :test,
+        "ecto.gen.migration": :test,
+        "ecto.gen.repo": :test,
+        "ecto.load": :test,
+        "ecto.migrate": :test,
+        "ecto.migrations": :test,
+        "ecto.rollback": :test,
+        "ecto.setup": :test
       ]
     ]
   end
@@ -67,12 +79,19 @@ defmodule Warder.MixProject do
       {:decimal, "~> 2.1", optional: true},
       {:dialyxir, "~> 1.4", only: :dev, runtime: false},
       {:ecto, "~> 3.11", optional: true},
-      {:ecto_sql, "~> 3.11", only: :test},
+      {:ecto_sql, "~> 3.11", optional: true},
       {:excoveralls, "~> 0.18", only: :test},
       {:ex_doc, "~> 0.31.2", only: :dev, runtime: false},
       {:postgrex, "~> 0.17.5", optional: true},
       {:stream_data, "~> 0.6.0", only: [:dev, :test]},
       {:styler, "~> 0.11.9", only: [:dev, :test], runtime: false}
+    ]
+  end
+
+  defp aliases do
+    [
+      "ecto.setup": ["ecto.create", "ecto.migrate"],
+      "ecto.reset": ["ecto.drop", "ecto.setup"]
     ]
   end
 end

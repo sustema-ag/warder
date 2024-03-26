@@ -12,9 +12,9 @@ defmodule Warder.Model do
           multirange: Multirange.t(integer())
         }
 
-  embedded_schema do
+  schema "models" do
     field :range, Range, db_type: :int8range, inner_type: :integer
-    field :multirange, Multirange, db_type: :int8range, inner_type: :integer
+    field :multirange, Multirange, db_type: :int8multirange, inner_type: :integer
   end
 
   @doc false
