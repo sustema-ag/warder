@@ -13,7 +13,9 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
     Make sure that you cast the types to the correct Postgres type. This can be
     achieved by using `Ecto.Query.API.type/2` or if the type is not directly
     supported by ecto `fragment("?::type", value)`.
+
     """
+    @moduledoc since: "0.1.0"
 
     @doc """
     Does `first` contain `second`?
@@ -34,6 +36,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         where(q in query, where: contains?(q.range, 7))
 
     """
+    @doc since: "0.1.0"
     defmacro contains?(first, second) do
       quote do
         fragment("? @> ?", unquote(first), unquote(second))
@@ -59,6 +62,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         where(q in query, where: contained?(7, q.range))
 
     """
+    @doc since: "0.1.0"
     defmacro contained?(first, second) do
       quote do
         fragment("? <@ ?", unquote(first), unquote(second))
@@ -85,6 +89,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro overlap?(first, second) do
       quote do
         fragment("? && ?", unquote(first), unquote(second))
@@ -111,6 +116,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro left?(first, second) do
       quote do
         fragment("? << ?", unquote(first), unquote(second))
@@ -137,6 +143,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro right?(first, second) do
       quote do
         fragment("? >> ?", unquote(first), unquote(second))
@@ -163,6 +170,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro no_extend_right?(first, second) do
       quote do
         fragment("? &< ?", unquote(first), unquote(second))
@@ -189,6 +197,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro no_extend_left?(first, second) do
       quote do
         fragment("? &> ?", unquote(first), unquote(second))
@@ -215,6 +224,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro adjacent?(first, second) do
       quote do
         fragment("? -|- ?", unquote(first), unquote(second))
@@ -239,6 +249,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro union(first, second) do
       quote do
         unquote(first) + unquote(second)
@@ -263,6 +274,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro intersection(first, second) do
       quote do
         unquote(first) * unquote(second)
@@ -287,6 +299,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro difference(first, second) do
       quote do
         unquote(first) - unquote(second)
@@ -311,6 +324,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro lower(subject) do
       quote do
         fragment("LOWER(?)", unquote(subject))
@@ -335,6 +349,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro upper(subject) do
       quote do
         fragment("UPPER(?)", unquote(subject))
@@ -359,6 +374,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro empty?(subject) do
       quote do
         fragment("ISEMPTY(?)", unquote(subject))
@@ -383,6 +399,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro lower_inclusive?(subject) do
       quote do
         fragment("LOWER_INC(?)", unquote(subject))
@@ -407,6 +424,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro upper_inclusive?(subject) do
       quote do
         fragment("UPPER_INC(?)", unquote(subject))
@@ -431,6 +449,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro lower_infinite?(subject) do
       quote do
         fragment("LOWER_INF(?)", unquote(subject))
@@ -455,6 +474,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro upper_infinite?(subject) do
       quote do
         fragment("UPPER_INF(?)", unquote(subject))
@@ -478,6 +498,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro merge_ranges(first, second) do
       quote do
         fragment("RANGE_MERGE(?, ?)", unquote(first), unquote(second))
@@ -501,6 +522,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro merge_multirange(subject) do
       quote do
         fragment("RANGE_MERGE(?)", unquote(subject))
@@ -524,6 +546,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro multirange(subject) do
       quote do
         fragment("MULTIRANGE(?)", unquote(subject))
@@ -548,6 +571,7 @@ with {:module, Ecto.Query.API} <- Code.ensure_loaded(Ecto.Query.API) do
         )
 
     """
+    @doc since: "0.1.0"
     defmacro unnest(subject) do
       quote do
         fragment("UNNEST(?)", unquote(subject))

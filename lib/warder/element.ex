@@ -49,6 +49,7 @@ defprotocol Warder.Element do
   * `Decimal`
 
   """
+  @moduledoc since: "0.1.0"
 
   @type t() :: term()
 
@@ -59,6 +60,7 @@ defprotocol Warder.Element do
   they are equal, and `:gt` if the left element is greater than the right
   element.
   """
+  @doc since: "0.1.0"
   @spec compare(left :: element, right :: element) :: :lt | :eq | :gt when element: t()
   def compare(left, right)
 
@@ -69,6 +71,7 @@ defprotocol Warder.Element do
 
   Always returns `false` for indiscrete ranges.
   """
+  @doc since: "0.1.0"
   @spec consecutive?(left :: element, right :: element) :: boolean() when element: t()
   def consecutive?(left, right)
 
@@ -77,6 +80,7 @@ defprotocol Warder.Element do
 
   Always returns `:error` for indiscrete ranges.
   """
+  @doc since: "0.1.0"
   @spec canonicalize(value :: element) :: {:ok, element} | :error when element: t()
   def canonicalize(value)
 end

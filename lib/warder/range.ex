@@ -35,6 +35,7 @@ defmodule Warder.Range do
     `:integer`.
 
   """
+  @moduledoc since: "0.1.0"
 
   alias Warder.Element
 
@@ -44,11 +45,13 @@ defmodule Warder.Range do
   @typedoc """
   A range of any `subtype`.
   """
+  @typedoc since: "0.1.0"
   @type t() :: t(term())
 
   @typedoc """
   A specified or empty range with the bound type of `subtype`.
   """
+  @typedoc since: "0.1.0"
   @type t(subtype) :: specified(subtype) | empty()
 
   @typedoc """
@@ -62,6 +65,7 @@ defmodule Warder.Range do
   * `upper_inclusive` - Whether the upper bound is inclusive.
 
   """
+  @typedoc since: "0.1.0"
   @type specified(subtype) ::
           %__MODULE__{
             lower: subtype | :unbound,
@@ -74,6 +78,7 @@ defmodule Warder.Range do
   An empty range is one that does not contain any values between the lower and
   upper bounds.
   """
+  @typedoc since: "0.1.0"
   @type empty() :: %__MODULE__{
           lower: :empty,
           lower_inclusive: nil,
@@ -85,6 +90,7 @@ defmodule Warder.Range do
 
   defmodule BoundOrderError do
     @moduledoc "Error when the range bounds are not in ascending order."
+    @moduledoc since: "0.1.0"
 
     @type t() :: t(term())
     @type t(subtype) :: %__MODULE__{lower: subtype, upper: subtype}
@@ -99,6 +105,7 @@ defmodule Warder.Range do
 
   defmodule NotContiguousError do
     @moduledoc "Error when the ranges are not contiguous."
+    @moduledoc since: "0.1.0"
 
     alias Warder.Range
 
@@ -119,6 +126,7 @@ defmodule Warder.Range do
 
   defmodule DisjointRangesError do
     @moduledoc "Error when the result of range difference would not be contiguous."
+    @moduledoc since: "0.1.0"
 
     alias Warder.Range
 
@@ -171,6 +179,7 @@ defmodule Warder.Range do
       {:error, %Warder.Range.BoundOrderError{lower: 10, upper: 1}}
 
   """
+  @doc since: "0.1.0"
   @spec new(
           lower :: subtype | :unbound,
           upper :: subtype | :unbound,
@@ -234,6 +243,7 @@ defmodule Warder.Range do
       ** (Warder.Range.BoundOrderError) The range lower bound (10) must be less than or equal to range upper bound (1).
 
   """
+  @doc since: "0.1.0"
   @spec new!(
           lower :: subtype,
           upper :: subtype,
@@ -256,12 +266,14 @@ defmodule Warder.Range do
       %Warder.Range{lower: :empty, lower_inclusive: nil, upper: :empty, upper_inclusive: nil}
 
   """
+  @doc since: "0.1.0"
   @spec empty() :: empty()
   def empty, do: %__MODULE__{lower: :empty, lower_inclusive: nil, upper: :empty, upper_inclusive: nil}
 
   @doc """
   Guard to detect empty ranges.
   """
+  @doc since: "0.1.0"
   defguard is_empty(range) when range.__struct__ == __MODULE__ and range.lower == :empty
 
   @doc """
@@ -284,6 +296,7 @@ defmodule Warder.Range do
       false
 
   """
+  @doc since: "0.1.0"
   @spec contains?(first :: t(subtype) | subtype, second :: t(subtype) | subtype) :: boolean()
         when subtype: Element.t()
   def contains?(first, second)
@@ -325,6 +338,7 @@ defmodule Warder.Range do
       false
 
   """
+  @doc since: "0.1.0"
   @spec overlap?(first :: t(subtype), second :: t(subtype)) :: boolean()
         when subtype: Element.t()
   def overlap?(first, second)
@@ -353,6 +367,7 @@ defmodule Warder.Range do
       false
 
   """
+  @doc since: "0.1.0"
   @spec left?(first :: t(subtype), second :: t(subtype)) :: boolean()
         when subtype: Element.t()
   def left?(first, second)
@@ -380,6 +395,7 @@ defmodule Warder.Range do
       false
 
   """
+  @doc since: "0.1.0"
   @spec right?(first :: t(subtype), second :: t(subtype)) :: boolean()
         when subtype: Element.t()
   def right?(first, second), do: left?(second, first)
@@ -396,6 +412,7 @@ defmodule Warder.Range do
       false
 
   """
+  @doc since: "0.1.0"
   @spec no_extend_right?(first :: t(subtype), second :: t(subtype)) :: boolean()
         when subtype: Element.t()
   def no_extend_right?(first, second)
@@ -423,6 +440,7 @@ defmodule Warder.Range do
       false
 
   """
+  @doc since: "0.1.0"
   @spec no_extend_left?(first :: t(subtype), second :: t(subtype)) :: boolean()
         when subtype: Element.t()
   def no_extend_left?(first, second)
@@ -450,6 +468,7 @@ defmodule Warder.Range do
       false
 
   """
+  @doc since: "0.1.0"
   @spec adjacent?(first :: t(subtype), second :: t(subtype)) :: boolean()
         when subtype: Element.t()
   def adjacent?(first, second)
@@ -494,6 +513,7 @@ defmodule Warder.Range do
       }}
 
   """
+  @doc since: "0.1.0"
   @spec union(first :: t(subtype), second :: t(subtype)) ::
           {:ok, t(subtype)} | {:error, NotContiguousError.t()}
         when subtype: Element.t()
@@ -546,6 +566,7 @@ defmodule Warder.Range do
       Second: %Warder.Range{lower: 15, upper: 20, lower_inclusive: true, upper_inclusive: false}
 
   """
+  @doc since: "0.1.0"
   @spec union!(first :: t(subtype), second :: t(subtype)) :: t(subtype)
         when subtype: Element.t()
   def union!(first, second) do
@@ -567,6 +588,7 @@ defmodule Warder.Range do
       %Warder.Range{lower: :empty, upper: :empty, lower_inclusive: nil, upper_inclusive: nil}
 
   """
+  @doc since: "0.1.0"
   @spec intersection(first :: t(subtype), second :: t(subtype)) :: t(subtype)
         when subtype: Element.t()
   def intersection(first, second)
@@ -621,6 +643,7 @@ defmodule Warder.Range do
       }}
 
   """
+  @doc since: "0.1.0"
   @spec difference(first :: t(subtype), second :: t(subtype)) ::
           {:ok, t(subtype)} | {:error, DisjointRangesError.t()}
         when subtype: Element.t()
@@ -692,6 +715,7 @@ defmodule Warder.Range do
       After difference: %Warder.Range{lower: 8, upper: 10, lower_inclusive: true, upper_inclusive: false}
 
   """
+  @doc since: "0.1.0"
   @spec difference!(first :: t(subtype), second :: t(subtype)) :: t(subtype)
         when subtype: Element.t()
   def difference!(first, second) do
@@ -713,6 +737,7 @@ defmodule Warder.Range do
       %Warder.Range{lower: 1, upper: 20, lower_inclusive: true, upper_inclusive: false}
 
   """
+  @doc since: "0.1.0"
   @spec merge(first :: t(subtype), second :: t(subtype)) :: t(subtype)
         when subtype: Element.t()
   def merge(first, second)
@@ -761,6 +786,7 @@ defmodule Warder.Range do
       :gt
 
   """
+  @doc since: "0.1.0"
   @spec compare(first :: t(subtype), second :: t(subtype)) :: :lt | :eq | :gt
         when subtype: Element.t()
   def compare(first, second)

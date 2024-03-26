@@ -34,15 +34,20 @@ defmodule Warder.Multirange do
     `:int8multirange`.
   * `inner_type` - The ecto type of the elements in the range. For example
     `:integer`.
+
   """
+  @moduledoc since: "0.1.0"
 
   alias Warder.Range
   alias Warder.Range.DisjointRangesError
 
   require Warder.Range
 
-  @opaque t() :: t(term())
-  @opaque t(subtype) :: %__MODULE__{ranges: [Range.t(subtype)]}
+  @typedoc since: "0.1.0"
+  @type t() :: t(term())
+
+  @typedoc since: "0.1.0"
+  @type t(subtype) :: %__MODULE__{ranges: [Range.t(subtype)]}
 
   defstruct ranges: []
 
@@ -62,6 +67,7 @@ defmodule Warder.Multirange do
       ]}
 
   """
+  @doc since: "0.1.0"
   @spec new(ranges :: [Range.t(subtype)]) :: t(subtype) when subtype: Warder.Element.t()
   def new(ranges) do
     canonicalized =
@@ -93,6 +99,7 @@ defmodule Warder.Multirange do
       %Warder.Multirange{ranges: []}
 
   """
+  @doc since: "0.1.0"
   @spec empty() :: t(subtype) when subtype: Warder.Element.t()
   def empty, do: new([])
 
@@ -130,6 +137,7 @@ defmodule Warder.Multirange do
       false
 
   """
+  @doc since: "0.1.0"
   @spec contains?(first :: t(subtype) | Range.t(subtype) | subtype, second :: t(subtype) | Range.t(subtype) | subtype) ::
           boolean()
         when subtype: Warder.Element.t()
@@ -169,6 +177,7 @@ defmodule Warder.Multirange do
       false
 
   """
+  @doc since: "0.1.0"
   @spec overlap?(first :: t(subtype) | Range.t(subtype), second :: t(subtype) | Range.t(subtype)) :: boolean()
         when subtype: Warder.Element.t()
   def overlap?(first, second)
@@ -207,6 +216,7 @@ defmodule Warder.Multirange do
       false
 
   """
+  @doc since: "0.1.0"
   @spec left?(first :: t(subtype) | Range.t(subtype), second :: t(subtype) | Range.t(subtype)) :: boolean()
         when subtype: Warder.Element.t()
   def left?(first, second)
@@ -245,6 +255,7 @@ defmodule Warder.Multirange do
       false
 
   """
+  @doc since: "0.1.0"
   @spec right?(first :: t(subtype) | Range.t(subtype), second :: t(subtype) | Range.t(subtype)) :: boolean()
         when subtype: Warder.Element.t()
   @spec right?(first :: t(subtype) | Range.t(subtype), second :: t(subtype) | Range.t(subtype)) :: boolean()
@@ -285,6 +296,7 @@ defmodule Warder.Multirange do
       false
 
   """
+  @doc since: "0.1.0"
   @spec no_extend_right?(first :: t(subtype) | Range.t(subtype), second :: t(subtype) | Range.t(subtype)) :: boolean()
         when subtype: Warder.Element.t()
   def no_extend_right?(first, second)
@@ -323,6 +335,7 @@ defmodule Warder.Multirange do
       false
 
   """
+  @doc since: "0.1.0"
   @spec no_extend_left?(first :: t(subtype) | Range.t(subtype), second :: t(subtype) | Range.t(subtype)) :: boolean()
         when subtype: Warder.Element.t()
   def no_extend_left?(first, second)
@@ -359,6 +372,7 @@ defmodule Warder.Multirange do
       true
 
   """
+  @doc since: "0.1.0"
   @spec adjacent?(first :: t(subtype) | Range.t(subtype), second :: t(subtype) | Range.t(subtype)) :: boolean()
         when subtype: Warder.Element.t()
   def adjacent?(first, second)
@@ -387,6 +401,7 @@ defmodule Warder.Multirange do
       ]}
 
   """
+  @doc since: "0.1.0"
   @spec union(first :: t(subtype), second :: t(subtype)) :: t(subtype)
         when subtype: Warder.Element.t()
   def union(first, second)
@@ -407,6 +422,7 @@ defmodule Warder.Multirange do
       ]}
 
   """
+  @doc since: "0.1.0"
   @spec intersection(first :: t(subtype), second :: t(subtype)) :: t(subtype)
         when subtype: Warder.Element.t()
   def intersection(first, second)
@@ -434,6 +450,7 @@ defmodule Warder.Multirange do
         %Warder.Range{lower: 15, upper: 20, lower_inclusive: true, upper_inclusive: false}
       ]}
   """
+  @doc since: "0.1.0"
   @spec difference(first :: t(subtype), second :: t(subtype)) :: t(subtype)
         when subtype: Warder.Element.t()
   def difference(first, second)
@@ -466,6 +483,7 @@ defmodule Warder.Multirange do
       %Warder.Range{lower: 1, upper: 30, lower_inclusive: true, upper_inclusive: false}
 
   """
+  @doc since: "0.1.0"
   @spec merge(multirange :: t(subtype)) :: Range.t(subtype)
         when subtype: Warder.Element.t()
   def merge(multirange)
