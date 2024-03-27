@@ -908,7 +908,7 @@ defmodule Warder.Range do
     def cast(%Date.Range{first: first, last: last, step: 1}, %{db_type: :daterange}),
       do: new(first, last, lower_inclusive: true, upper_inclusive: true)
 
-    def cast(_range, _params), do: :error
+    def cast(_value, _params), do: :error
 
     @doc false
     @impl Ecto.ParameterizedType
@@ -931,6 +931,8 @@ defmodule Warder.Range do
       end
     end
 
+    def dump(_value, _dumper, _params), do: :error
+
     @doc false
     @impl Ecto.ParameterizedType
     def load(nil, _loader, _params), do: {:ok, nil}
@@ -947,6 +949,8 @@ defmodule Warder.Range do
         new(lower, upper, lower_inclusive: lower_inclusive, upper_inclusive: upper_inclusive)
       end
     end
+
+    def load(_value, _loader, _params), do: :error
 
     defp mutate_inner(value, mutator, inner_type)
     defp mutate_inner(:empty, _mutator, _inner_type), do: {:ok, :empty}
