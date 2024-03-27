@@ -554,7 +554,7 @@ defmodule Warder.Multirange do
 
     def cast(%__MODULE__{} = multirange, _params), do: {:ok, multirange}
 
-    def cast(_range, _params), do: :error
+    def cast(_value, _params), do: :error
 
     defp cast_range(range, {:ok, acc}) do
       case Range.cast(range, %{db_type: :integer}) do
@@ -574,6 +574,8 @@ defmodule Warder.Multirange do
       end
     end
 
+    def dump(_value, _dumper, _params), do: :error
+
     defp dump_range(range, {:ok, acc}, dumper, params) do
       case dumper.({:parameterized, Range, params}, range) do
         {:ok, range} -> {:cont, {:ok, [range | acc]}}
@@ -591,6 +593,8 @@ defmodule Warder.Multirange do
         :error -> :error
       end
     end
+
+    def load(_value, _loader, _params), do: :error
 
     defp load_range(range, {:ok, acc}, loader, params) do
       case loader.({:parameterized, Range, params}, range) do
