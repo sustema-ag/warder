@@ -2,7 +2,7 @@
 
 [![OpenSSF Vulnerability Disclosure](https://img.shields.io/badge/OpenSSF-Vulnerability_Disclosure-green)](https://github.com/ossf/oss-vulnerability-guide/blob/main/finder-guide.md)
 [![GitHub Report](https://img.shields.io/badge/GitHub-Security_Advisories-blue)](https://github.com/sustema-ag/warder/security/advisories/new)
-[![Email Report](https://img.shields.io/badge/Email-security%40erlef.org-blue)](mailto:jonatan.maennchen@sustema.io)
+[![Email Report](https://img.shields.io/badge/Email-jonatan.maennchen%40sustema.io-blue)](mailto:jonatan.maennchen@sustema.io)
 
 This repository follows the
 [OpenSSF Vulnerability Disclosure guide](https://github.com/ossf/oss-vulnerability-guide/tree/main).
