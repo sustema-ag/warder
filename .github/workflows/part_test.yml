@@ -64,11 +64,17 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # Lowest Supported Version
           - elixir: "1.16.0"
+            otp: "26.2.5"
             unstable: false
-          - elixir: "1.16.2"
+          # Latest Supported Version (via ASDF)
+          - elixir: "${{ needs.detectToolVersions.outputs.elixirVersion }}"
+            otp: "${{ needs.detectToolVersions.outputs.otpVersion }}"
             unstable: false
+          # Elixir Main
           - elixir: "main"
+            otp: "${{ needs.detectToolVersions.outputs.otpVersion }}"
             unstable: true
 
     services:
@@ -90,7 +96,7 @@ jobs:
       - uses: erlef/setup-beam@v1
         id: setupBEAM
         with:
-          otp-version: "${{ needs.detectToolVersions.outputs.otpVersion }}"
+          otp-version: "${{ matrix.otp }}"
           elixir-version: "${{ matrix.elixir }}"
           version-type: strict
       - uses: actions/cache@v4
