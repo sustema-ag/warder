@@ -577,7 +577,7 @@ defmodule Warder.Multirange do
     def dump(_value, _dumper, _params), do: :error
 
     defp dump_range(range, {:ok, acc}, dumper, params) do
-      case dumper.({:parameterized, Range, params}, range) do
+      case dumper.(Ecto.ParameterizedType.init(Range, params), range) do
         {:ok, range} -> {:cont, {:ok, [range | acc]}}
         :error -> {:halt, :error}
       end
@@ -597,7 +597,7 @@ defmodule Warder.Multirange do
     def load(_value, _loader, _params), do: :error
 
     defp load_range(range, {:ok, acc}, loader, params) do
-      case loader.({:parameterized, Range, params}, range) do
+      case loader.(Ecto.ParameterizedType.init(Range, params), range) do
         {:ok, range} -> {:cont, {:ok, [range | acc]}}
         :error -> {:halt, :error}
       end
