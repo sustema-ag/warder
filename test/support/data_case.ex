@@ -32,7 +32,7 @@ defmodule Warder.DataCase do
   setup tags do
     :ok = Sandbox.checkout(Warder.Repo)
 
-    unless tags[:async] do
+    if !tags[:async] do
       Sandbox.mode(Warder.Repo, {:shared, self()})
     end
 

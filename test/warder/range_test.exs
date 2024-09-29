@@ -404,7 +404,7 @@ defmodule Warder.RangeTest do
           assert Range.difference!(first, second) == expected_range
         rescue
           e in Postgrex.Error ->
-            unless e.postgres.message == "result of range difference would not be contiguous" do
+            if e.postgres.message != "result of range difference would not be contiguous" do
               reraise e, __STACKTRACE__
             end
 
@@ -439,7 +439,7 @@ defmodule Warder.RangeTest do
           assert Range.difference!(first, second) == expected_range
         rescue
           e in Postgrex.Error ->
-            unless e.postgres.message == "result of range difference would not be contiguous" do
+            if e.postgres.message != "result of range difference would not be contiguous" do
               reraise e, __STACKTRACE__
             end
 
@@ -474,7 +474,7 @@ defmodule Warder.RangeTest do
           assert Range.union!(first, second) == expected_range
         rescue
           e in Postgrex.Error ->
-            unless e.postgres.message == "result of range union would not be contiguous" do
+            if e.postgres.message != "result of range union would not be contiguous" do
               reraise e, __STACKTRACE__
             end
 
@@ -509,7 +509,7 @@ defmodule Warder.RangeTest do
           assert Range.union!(first, second) == expected_range
         rescue
           e in Postgrex.Error ->
-            unless e.postgres.message == "result of range union would not be contiguous" do
+            if e.postgres.message != "result of range union would not be contiguous" do
               reraise e, __STACKTRACE__
             end
 
