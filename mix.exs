@@ -84,7 +84,7 @@ defmodule Warder.MixProject do
       {:ex_doc, "~> 0.36.1", only: :dev, runtime: false},
       {:postgrex, "~> 0.19.0", optional: true},
       {:stream_data, "~> 1.1.0", only: [:dev, :test]},
-      {:styler, "~> 1.2.0", only: [:dev, :test], runtime: false}
+      {:styler, "~> 1.3.1", only: [:dev, :test], runtime: false}
     ]
   end
 
