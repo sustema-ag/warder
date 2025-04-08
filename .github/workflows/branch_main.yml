@@ -6,6 +6,15 @@ on:
 name: "Main Branch"
 
 jobs:
+  report_mix_deps:
+    name: "Report Mix Dependencies"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: maennchen/mix-dependency-submission@v1.0.0-beta.5
+
   test:
     name: "Test"
 
