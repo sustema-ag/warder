@@ -13,7 +13,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: maennchen/mix-dependency-submission@v1.0.0-beta.6
+      - uses: maennchen/mix-dependency-submission@30f9701d83f6d97e7308af7281f7617dde18b172
 
   test:
     name: "Test"
