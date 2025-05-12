@@ -81,7 +81,7 @@ defmodule Warder.MixProject do
       {:ecto, "~> 3.11", optional: true},
       {:ecto_sql, "~> 3.11", optional: true},
       {:excoveralls, "~> 0.18", only: :test},
-      {:ex_doc, "~> 0.37.0", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.38.0", only: :dev, runtime: false},
       {:postgrex, "~> 0.20.0", optional: true},
       {:stream_data, "~> 1.2.0", only: [:dev, :test]},
       {:styler, "~> 1.4.0", only: [:dev, :test], runtime: false}
