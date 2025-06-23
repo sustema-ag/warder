@@ -24,3 +24,7 @@ warder-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Mix Lock (Library)
+/mix.lock
+
