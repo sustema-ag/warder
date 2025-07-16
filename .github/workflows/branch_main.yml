@@ -13,7 +13,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: erlef/mix-dependency-submission@v1.1.3
+      - uses: erlef/mix-dependency-submission@v1.1.4
 
   test:
     name: "Test"
