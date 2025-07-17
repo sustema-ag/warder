@@ -41,7 +41,7 @@ defmodule Warder.Multirange do
   alias Warder.Range
   alias Warder.Range.DisjointRangesError
 
-  require Warder.Range
+  require Range
 
   @typedoc since: "0.1.0"
   @type t() :: t(term())

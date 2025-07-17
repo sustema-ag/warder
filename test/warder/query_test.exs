@@ -8,7 +8,7 @@ defmodule Warder.QueryTest do
   alias Warder.Query
   alias Warder.Range
 
-  require Warder.Query
+  require Query
 
   doctest Query
 
