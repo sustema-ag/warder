@@ -264,9 +264,9 @@ defmodule Warder.RangeTest do
 
   describe inspect(&Enumerable.member?/2) do
     test "can detect members" do
-      assert Enum.member?(Range.new!(1, 10), 2)
-      assert Enum.member?(Range.new!(Decimal.new(1), Decimal.new(10)), Decimal.new("3.5"))
-      refute Enum.member?(Range.new!(1, 10), 17)
+      assert 2 in Range.new!(1, 10)
+      assert Decimal.new("3.5") in Range.new!(Decimal.new(1), Decimal.new(10))
+      refute 17 in Range.new!(1, 10)
     end
   end
 
