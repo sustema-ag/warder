@@ -14,8 +14,13 @@ defmodule Warder.MixProject do
       description: "Library for handling ranges. Includes Ecto Types for PostgreSQL.",
       package: package(),
       test_coverage: [tool: ExCoveralls],
-      aliases: aliases(),
-      preferred_cli_env: [
+      aliases: aliases()
+    ]
+  end
+
+  def cli do
+    [
+      preferred_envs: [
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.post": :test,
