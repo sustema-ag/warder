@@ -818,8 +818,12 @@ defmodule Warder.Range do
   end
 
   @spec bounds(specified(subtype)) :: {bound(subtype), bound(subtype)} when subtype: Element.t()
-  defp bounds(%__MODULE__{lower: lower, upper: upper, lower_inclusive: lower_inclusive, upper_inclusive: upper_inclusive}),
-    do: {{lower, lower_inclusive, true}, {upper, upper_inclusive, false}}
+  defp bounds(%__MODULE__{
+         lower: lower,
+         upper: upper,
+         lower_inclusive: lower_inclusive,
+         upper_inclusive: upper_inclusive
+       }), do: {{lower, lower_inclusive, true}, {upper, upper_inclusive, false}}
 
   @spec compare_bounds(first :: bound(subtype), second :: bound(subtype)) :: :lt | :eq | :gt
         when subtype: Element.t()
@@ -900,8 +904,7 @@ defmodule Warder.Range do
     def cast(
           %Postgrex.Range{lower: lower, upper: upper, lower_inclusive: lower_inclusive, upper_inclusive: upper_inclusive},
           _params
-        ),
-        do: new(lower, upper, lower_inclusive: lower_inclusive, upper_inclusive: upper_inclusive)
+        ), do: new(lower, upper, lower_inclusive: lower_inclusive, upper_inclusive: upper_inclusive)
 
     def cast(%__MODULE__{} = range, _params), do: {:ok, range}
 
