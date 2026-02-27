@@ -124,7 +124,7 @@ jobs:
           DATABASE_PORT: "${{ job.services.postgres.ports['5432'] }}"
           DATABASE_HOST: "127.0.0.1"
           DATABASE_USER: "root"
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: mix_test-coverage-${{ matrix.elixir }}
           path: cover/
