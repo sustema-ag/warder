@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: erlef/mix-dependency-submission@v1.3.2
 
   test:
